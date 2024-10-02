@@ -1,5 +1,5 @@
 
-kubectl create secret generic mysql-secret --from-literal=password="YOURPASSWORD"
+kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
 
 kubectl create -f mysql-pvc.yaml
 
