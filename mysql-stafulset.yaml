@@ -34,3 +34,14 @@ spec:
       - name: mysql-data
         persistentVolumeClaim:
           claimName: mysql-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  ports:
+  - port: 3306
+    protocol: TCP
+  selector:
+    app: mysql
