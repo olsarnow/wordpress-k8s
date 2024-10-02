@@ -1,5 +1,5 @@
-==
-Create a Wordpress in kubernetes
+
+###Create a Wordpress Instance in kubernetes
 
 ```
 kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
