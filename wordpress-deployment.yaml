@@ -1,4 +1,16 @@
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wp-php-config
+data:
+  uploads.ini: |-
+    file_uploads = On
+    upload_max_filesize = 64M
+    post_max_size = 64M
+    memory_limit = 32M
+    max_execution_time = 300
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,6 +34,9 @@ spec:
           volumeMounts:
             - name: wordpress-data
               mountPath: /var/www/html
+            - mountPath: /usr/local/etc/php/conf.d/uploads.ini
+              name: php-config
+              subPath: uploads.ini
           env:
             - name: WORDPRESS_DB_HOST
               value: mysql-service.default.svc.cluster.local
@@ -38,6 +53,10 @@ spec:
         - name: wordpress-data
           persistentVolumeClaim:
             claimName: wordpress-pvc
+        - configMap:
+            defaultMode: 420
+            name: wp-php-config
+          name: php-config
 ---
 kind: Service
 apiVersion: v1
