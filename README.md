@@ -10,5 +10,7 @@ kubectl create -f wordpress-pvc.yaml
 
 kubectl create -f mysql-statefulset.yaml
 
+kubectl create -f redis-deployment.yaml
+
 kubectl create -f wordpress-deployment.yaml
 ```
