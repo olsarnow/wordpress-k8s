@@ -7,12 +7,28 @@
 you need access to a kubernetes cluster and kubetctl tool installed on your desktop.
 
 
+#### Create Kubernetes Secrets for MySQL Password
+
+First, create a Kubernetes secret that will store the MySQL database password securely. Replace "RANDOMPASSWORD" with a strong password:
+
+```
+kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
+```
+
 
 #### create all the necessary services
 
 
+You need three components to run a WordPress instance:
+
+MySQL - for database management.
+
+Redis - for caching (optional, but recommended).
+
+WordPress - the web application itself including php8.1 and apache2 web server
+
+
 ```
-kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
 
 kubectl apply -f mysql.yaml
 
