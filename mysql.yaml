@@ -1,6 +1,17 @@
 ---
-kind: StatefulSet
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
 apiVersion: apps/v1
+kind: StatefulSet
 metadata:
   name: mysql
   labels:
@@ -45,3 +56,4 @@ spec:
     protocol: TCP
   selector:
     app: mysql
+

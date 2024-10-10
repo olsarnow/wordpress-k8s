@@ -14,18 +14,14 @@ you need access to a kubernetes cluster and kubetctl tool installed on your desk
 ```
 kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
 
-kubectl create -f mysql-pvc.yaml
+kubectl apply -f mysql.yaml
 
-kubectl create -f wordpress-pvc.yaml
+kubectl apply -f redis.yaml
 
-kubectl create -f mysql-statefulset.yaml
-
-kubectl create -f redis-deployment.yaml
-
-kubectl create -f wordpress-deployment.yaml
+kubectl apply -f wordpress.yaml
 ```
 
-As a result, you will have a Wordpress instance that uses an external IP and port 80. 
+In the result, you will have a Wordpress instance that uses an external IP and port 80. 
 I recommend to use a service like Cloudflare. Create a DNS entry there for the external IP and redirect the traffic via HTTPS
 
 ```
