@@ -22,7 +22,7 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: "lxeh9823ryf3h"
+          value: {{ .Values.config.mysqlpass }}
         ports:
         - containerPort: 3306
         volumeMounts:

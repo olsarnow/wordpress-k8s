@@ -14,5 +14,5 @@ pvc:
   size: 5G
   mode: ReadWriteOnce
 
-env:
-  name: dev
+config:
+  mysqlpass: lxeh9823ryf3h
