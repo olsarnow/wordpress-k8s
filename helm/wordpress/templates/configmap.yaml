@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wp-php-config
+  namespace: {{ .Values.namespace }}
+data:
+  uploads.ini: |-
+    file_uploads = On
+    upload_max_filesize = 64M
+    post_max_size = 64M
+    memory_limit = 32M
+    max_execution_time = 300
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis-php-config
+  namespace: {{ .Values.namespace }}
+data:
+  redis.ini: |-
+    extension = redis.so
+    session.save_handler = redis
+    session.save_path = tcp://{{ .Values.config.redishost }}:{{ .Values.config.redisport }}

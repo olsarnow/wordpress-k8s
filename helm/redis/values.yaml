@@ -1,0 +1,12 @@
+replicaCount: 1
+namespace: dev
+
+image:
+  repository: redis
+  tag: "latest"
+
+service:
+  port: 6379
+  targetPort: 6379
+  type: ClusterIP
+ 

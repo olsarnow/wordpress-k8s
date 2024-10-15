@@ -1,0 +1,23 @@
+replicaCount: 1
+namespace: dev
+
+image:
+  repository: olsarnow/wordpress
+  tag: "latest"
+
+service:
+  port: 80
+  targetPort: 80
+  type: LoadBalancer
+ 
+pvc:
+  mode: ReadWriteOnce
+  size: 10G
+
+config:
+  mysqlhost: mysql-service.dev.svc.cluster.local
+  mysqlpass: lxeh9823ryf3h
+  mysqluser: root
+  mysqldb: mysql
+  redishost: redis-service.dev.svc.cluster.local
+  redisport: 6379

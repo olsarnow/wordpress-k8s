@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-deployment
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80
+              name: {{ .Release.Name }}
+          volumeMounts:
+            - name: wordpress-data
+              mountPath: /var/www/html
+            - mountPath: /usr/local/etc/php/conf.d/uploads.ini
+              name: php-config
+              subPath: uploads.ini
+            - mountPath: /usr/local/etc/php/conf.d/redis.ini
+              name: redis-config
+              subPath: redis.ini
+          env:
+            - name: WORDPRESS_DB_HOST
+              value: {{ .Values.config.mysqlhost }}
+            - name: WORDPRESS_DB_PASSWORD
+              value: {{ .Values.config.mysqlpass }}
+            - name: WORDPRESS_DB_USER
+              value: {{ .Values.config.mysqluser }}
+            - name: WORDPRESS_DB_NAME
+              value: {{ .Values.config.mysqldb }}
+      volumes:
+        - name: wordpress-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-pvc
+        - configMap:
+            name: wp-php-config
+            defaultMode: 420
+          name: php-config
+        - configMap:
+            name: redis-php-config
+            defaultMode: 420
+          name: redis-config

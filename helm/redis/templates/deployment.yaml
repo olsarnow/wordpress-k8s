@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: php-fpm
+  name: {{ .Release.Name }}-deployment
   namespace: {{ .Values.namespace }}
   labels:
-    app: php-fpm
+    app: {{ .Release.Name }}
 spec:
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Release.Name }}
-  replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
         app: {{ .Release.Name }}
     spec:
       containers:
-        - name: {{ .Release.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          ports:
-            - containerPort: 9000
+      - name: {{ .Release.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - containerPort: 6379
