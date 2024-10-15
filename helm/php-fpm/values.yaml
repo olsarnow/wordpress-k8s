@@ -1,0 +1,13 @@
+replicaCount: 1
+namespace: dev
+
+image:
+  repository: php
+  tag: "8.2-fpm"
+
+service:
+  name: php-fpm-service
+  port: 9000
+
+env:
+  name: dev

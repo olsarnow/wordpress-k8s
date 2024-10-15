@@ -1,0 +1,10 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apache-fpm-config
+data:
+  php-fpm.conf: |-
+    <FilesMatch \.(php|phar)$>
+    SetHandler "proxy:fcgi://{{ .Values.fpmservice }}:{{ .Values.fpmport }}"
+    </FilesMatch>

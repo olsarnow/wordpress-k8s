@@ -1,0 +1,17 @@
+replicaCount: 1
+namespace: dev
+fpmservice: php-fpm-service.dev.svc.cluster.local
+fpmport: 9000
+
+image:
+  repository: php
+  tag: "8.2-apache"
+
+service:
+  name: http
+  port: 80
+  targetPort: 80
+  type: LoadBalancer
+
+env:
+  name: dev
