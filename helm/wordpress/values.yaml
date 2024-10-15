@@ -1,5 +1,5 @@
 replicaCount: 1
-namespace: dev
+namespace: wordpress
 
 image:
   repository: olsarnow/wordpress
@@ -15,9 +15,9 @@ pvc:
   size: 10G
 
 config:
-  mysqlhost: mysql-service.dev.svc.cluster.local
+  mysqlhost: mysql-service.wordpress.svc.cluster.local
   mysqlpass: lxeh9823ryf3h
   mysqluser: root
   mysqldb: mysql
-  redishost: redis-service.dev.svc.cluster.local
+  redishost: redis-service.wordpress.svc.cluster.local
   redisport: 6379

@@ -1,5 +1,5 @@
 replicaCount: 1
-namespace: dev
+namespace: wordpress
 
 image:
   repository: redis
