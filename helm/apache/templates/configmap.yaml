@@ -6,5 +6,5 @@ metadata:
 data:
   php-fpm.conf: |-
     <FilesMatch \.(php|phar)$>
-    SetHandler "proxy:fcgi://{{ .Values.fpmservice }}:{{ .Values.fpmport }}"
+    SetHandler "proxy:fcgi://{{ .Values.fpmservice }}:{{ .Values.fpmport }}/var/www/html/"
     </FilesMatch>
