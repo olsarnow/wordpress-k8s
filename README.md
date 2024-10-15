@@ -7,6 +7,12 @@
 you need access to a kubernetes cluster and kubetctl tool installed on your desktop.
 
 
+#### helm vs. kubectl
+
+If you'd prefer to use Helm instead of kubectl, simply go to the "helm" directory, edit the values.yaml file as needed, and install the three building blocks. Done! Otherwise, proceed as described.
+
+
+
 #### Create Kubernetes Secrets for MySQL Password
 
 First, create a Kubernetes secret that will store the MySQL database password securely. Replace "RANDOMPASSWORD" with a strong password:
