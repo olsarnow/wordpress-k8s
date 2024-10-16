@@ -40,11 +40,11 @@ spec:
               value: {{ .Values.config.mysqldb }}
           resources:
             requests:
-              memory: "1024Mi"
-              cpu: "500m"
+              memory: "2048Mi"
+              cpu: "1000m"
             limits:
               memory: "4096Mi"
-              cpu: "2000m"
+              cpu: "3000m"
       volumes:
         - name: wordpress-data
           persistentVolumeClaim:
