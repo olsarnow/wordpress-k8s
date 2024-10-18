@@ -22,3 +22,17 @@ data:
     extension = redis.so
     session.save_handler = redis
     session.save_path = tcp://{{ .Values.config.redishost }}:{{ .Values.config.redisport }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: memcached-config
+  namespace: {{ .Values.namespace }}
+data:
+  memcached.conf: |-
+    LoadModule cache_module /usr/lib/apache2/modules/mod_cache.so
+    LoadModule cache_socache_module /usr/lib/apache2/modules/mod_cache_socache.so
+    LoadModule socache_memcache_module /usr/lib/apache2/modules/mod_socache_memcache.so
+    CacheSocache memcache:{{ .Values.config.memcachedhost }}:{{ .Values.config.memcachedport }}
+
+    ###

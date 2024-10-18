@@ -29,6 +29,9 @@ spec:
             - mountPath: /usr/local/etc/php/conf.d/redis.ini
               name: redis-config
               subPath: redis.ini
+            - mountPath: /etc/apache2/conf-enabled/memcached.conf
+              name: memcached-config
+              subPath: memcached.conf
           env:
             - name: WORDPRESS_DB_HOST
               value: {{ .Values.config.mysqlhost }}
@@ -44,7 +47,6 @@ spec:
               cpu: "1000m"
             limits:
               memory: "4096Mi"
-              cpu: "3000m"
       volumes:
         - name: wordpress-data
           persistentVolumeClaim:
@@ -57,3 +59,7 @@ spec:
             name: redis-php-config
             defaultMode: 420
           name: redis-config
+        - configMap:
+            name: memcached-config
+            defaultMode: 420
+          name: memcached-config

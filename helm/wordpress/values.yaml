@@ -9,7 +9,6 @@ service:
   port: 80
   targetPort: 80
   type: LoadBalancer
- 
 pvc:
   mode: ReadWriteOnce
   size: 10G
@@ -21,3 +20,5 @@ config:
   mysqldb: mysql
   redishost: redis-service.wordpress.svc.cluster.local
   redisport: 6379
+  memcachedhost: memcached-service.wordpress.svc.cluster.local
+  memcachedport: 11211
