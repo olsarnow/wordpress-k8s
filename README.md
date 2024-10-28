@@ -7,38 +7,12 @@
 you need access to a kubernetes cluster and kubetctl tool installed on your desktop.
 
 
-#### helm vs. kubectl
+#### helm install
 
-If you'd prefer to use Helm instead of kubectl, simply go to the "helm" directory, edit the values.yaml file as needed, and install the building blocks. Done! Otherwise, proceed as described.
-
-
-
-#### Create Kubernetes Secrets for MySQL Password
-
-First, create a Kubernetes secret that will store the MySQL database password securely. Replace "RANDOMPASSWORD" with a strong password:
-
-```
-kubectl create secret generic mysql-secret --from-literal=password="RANDOMPASSWORD"
-```
+Simply go to the "helm" directory, edit the values.yaml file as needed, and install the building blocks. Done! 
 
 
-#### create all the necessary services
 
-
-You need these components to run a WordPress instance:
-
-MySQL - for database management.
-
-
-WordPress - the web application itself including php8.1 and apache2 web server
-
-
-```
-
-kubectl apply -f mysql.yaml
-
-kubectl apply -f wordpress.yaml
-```
 
 In the result, you will have a Wordpress instance running on port  80. 
 

@@ -3,3 +3,6 @@ helm/redis
 helm/memcached
 help/php-fpm
 docker.yaml
+mysql.yaml
+redis.yaml
+wordpress.yaml
