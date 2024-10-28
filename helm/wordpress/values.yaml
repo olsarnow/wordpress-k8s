@@ -1,5 +1,6 @@
 replicaCount: 1
 namespace: wordpress
+domainname: go-bornholm.de
 
 image:
   repository: olsarnow/wordpress
@@ -8,7 +9,7 @@ image:
 service:
   port: 80
   targetPort: 80
-  type: LoadBalancer
+  type: ClusterIP
 pvc:
   mode: ReadWriteOnce
   size: 10G
